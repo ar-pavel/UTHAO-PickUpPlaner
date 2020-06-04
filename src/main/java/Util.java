@@ -4,7 +4,7 @@ public class Util {
     public static int PENALTY = 1;
 
     public static double EARTH_EQ_RADIUS = 6378.1370D;
-    public static double CONVERT_DEGREE_TO_RADIANS = Math.PI/180D;
+//    public static double CONVERT_DEGREE_TO_RADIANS = Math.PI/180D;
 
     public static double getDistance(double sLongitude, double sLatitude, double dLongitude, double dLatitude){
         double deltaLongitude = sLongitude - dLongitude;

@@ -16,7 +16,7 @@ public class SimulatedAnnealing {
             if(calculatePenalty(currentRoute) < calculatePenalty(shortestRoute))
                 shortestRoute = new Route(currentRoute);
 
-            if(acceptRoute(calculatePenalty(currentRoute),calculatePenalty(adjacentRoute),temperature))
+            if(acceptableRoute(calculatePenalty(currentRoute),calculatePenalty(adjacentRoute),temperature))
                 currentRoute = new Route(adjacentRoute);
 
             temperature *= 1-RATE_OF_COOLING;
@@ -26,14 +26,18 @@ public class SimulatedAnnealing {
     }
 
 
-    public boolean acceptRoute(long currentPenalty, long adjacentPenalty, double temperature){
+    public boolean acceptableRoute(long currentPenalty, long adjacentPenalty, double temperature){
 
         double acceptProbability = 1.0;
 
         if(adjacentPenalty >= currentPenalty)
             acceptProbability = Math.exp(-(adjacentPenalty - currentPenalty)/temperature);
 
-       return acceptProbability>=Math.random();
+        boolean acceptableRouteFlag = acceptProbability >= Math.random();
+
+//        System.err.println( acceptableRouteFlag? "Stay (Random <= Prob Function)":"Random > Prob Function");
+
+        return acceptableRouteFlag;
 
     }
 
@@ -64,8 +68,8 @@ public class SimulatedAnnealing {
 
     private boolean possibleToTake(int timeNow, double curLongitude, double curLatitude, Client client) {
 
-//        check if it is possible to go back to HQ from current node by visiting this node withing time
-//    also check if the time slot match as well
+//      check if it is possible to go back to HQ from current node by visiting this node withing time
+//      also check if the time slot match as well
 
         int timeNeedToReach = Util.timeNeed(curLongitude, curLatitude,  client.getLongitude(), client.getLatitude());
         timeNow += timeNeedToReach;

@@ -16,7 +16,7 @@ public class AddressGenerator {
 
             clients.add(new Client(HQ.longitude +x, HQ.latitude+y, sttime, endtime));
         }
-
+//
 //        for (Object client:clients) {
 //            System.err.println(client);
 //        }
