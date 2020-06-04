@@ -11,6 +11,22 @@ public class Client {
         this.endTime = endTime;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public int getStTime() {
+        return stTime;
+    }
+
+    public int getEndTime() {
+        return endTime;
+    }
+
     @Override
     public String toString() {
         return "Client{" +

@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class AddressGenerator {
 
-    public static ArrayList<Client> generateLocations(int n){
+    public static Route generateLocations(int n){
 
-        ArrayList<Client> clients = new ArrayList();
+        ArrayList<Client> clients = new ArrayList<>();
 
         for (int i = 0; i < n; i++) {
             double x = Math.random()/10.0;
@@ -17,11 +17,11 @@ public class AddressGenerator {
             clients.add(new Client(HQ.longitude +x, HQ.latitude+y, sttime, endtime));
         }
 
-        for (Client client:clients) {
-            System.out.println(client);
-        }
+//        for (Object client:clients) {
+//            System.err.println(client);
+//        }
 
-        return clients;
+        return new Route(clients);
 
     }
 }

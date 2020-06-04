@@ -2,8 +2,8 @@ public class HQ {
     public static double longitude;
     public static double latitude;
 
-    public static int endTime = 600;
-    public static int stTime = 1800;
+    public static int endTime = 1800;
+    public static int stTime = 600;
 
 
     public HQ(double x, double y) {
