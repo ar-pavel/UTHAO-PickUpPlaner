@@ -6,8 +6,8 @@ public class SimulatedAnnealing {
     public static final double MIN_TEMPERATURE = 0.99;
 
     public Route findRoute(double temperature, Route currentRoute){
-        Route shortestRoute = new Route(currentRoute);
-        shortestRoute.setPenaltyCount(calculatePenalty(shortestRoute));
+        Route bestRoute = new Route(currentRoute);
+        bestRoute.setPenaltyCount(calculatePenalty(bestRoute));
 
         Route adjacentRoute;
 
@@ -16,9 +16,9 @@ public class SimulatedAnnealing {
 
             currentRoute.setPenaltyCount(calculatePenalty(currentRoute));
 
-//            if(calculatePenalty(currentRoute) < calculatePenalty(shortestRoute))
-            if(currentRoute.getPenaltyCount() < shortestRoute.getPenaltyCount())
-                shortestRoute = new Route(currentRoute);
+//            if(calculatePenalty(currentRoute) < calculatePenalty(bestRoute))
+            if(currentRoute.getPenaltyCount() < bestRoute.getPenaltyCount())
+                bestRoute = new Route(currentRoute);
 
 //            if(acceptableRoute(calculatePenalty(currentRoute),calculatePenalty(adjacentRoute),temperature))
             if(acceptableRoute(currentRoute.getPenaltyCount(),adjacentRoute.getPenaltyCount(),temperature))
@@ -27,7 +27,7 @@ public class SimulatedAnnealing {
             temperature *= 1-RATE_OF_COOLING;
         }
 
-        return shortestRoute;
+        return bestRoute;
     }
 
 
