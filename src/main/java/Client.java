@@ -3,6 +3,7 @@ public class Client {
     private double latitude;
     private int stTime;
     private int endTime;
+    private int pickupTime;
 
     public Client(double longitude, double latitude, int stTime, int endTime) {
         this.longitude = longitude;
@@ -27,6 +28,14 @@ public class Client {
         return endTime;
     }
 
+    public int getPickupTime() {
+        return pickupTime;
+    }
+
+    public void setPickupTime(int pickupTime) {
+        this.pickupTime = pickupTime;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -36,4 +45,6 @@ public class Client {
                 ", endTime=" + endTime +
                 '}';
     }
+
+
 }

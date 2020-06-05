@@ -1,7 +1,7 @@
 public class Util {
     public static int SPEED = 50;
     public static int PICKUP_TIME = 2;
-    public static int PENALTY = 1;
+    public static int PENALTY = 10000;
 
     public static double EARTH_EQ_RADIUS = 6378.1370D;
 //    public static double CONVERT_DEGREE_TO_RADIANS = Math.PI/180D;

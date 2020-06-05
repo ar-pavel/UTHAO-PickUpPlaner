@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class SimulatedAnnealing {
@@ -8,15 +7,21 @@ public class SimulatedAnnealing {
 
     public Route findRoute(double temperature, Route currentRoute){
         Route shortestRoute = new Route(currentRoute);
+        shortestRoute.setPenaltyCount(calculatePenalty(shortestRoute));
+
         Route adjacentRoute;
 
         while (temperature > MIN_TEMPERATURE){
             adjacentRoute = getAdjacent(new Route(currentRoute));
 
-            if(calculatePenalty(currentRoute) < calculatePenalty(shortestRoute))
+            currentRoute.setPenaltyCount(calculatePenalty(currentRoute));
+
+//            if(calculatePenalty(currentRoute) < calculatePenalty(shortestRoute))
+            if(currentRoute.getPenaltyCount() < shortestRoute.getPenaltyCount())
                 shortestRoute = new Route(currentRoute);
 
-            if(acceptableRoute(calculatePenalty(currentRoute),calculatePenalty(adjacentRoute),temperature))
+//            if(acceptableRoute(calculatePenalty(currentRoute),calculatePenalty(adjacentRoute),temperature))
+            if(acceptableRoute(currentRoute.getPenaltyCount(),adjacentRoute.getPenaltyCount(),temperature))
                 currentRoute = new Route(adjacentRoute);
 
             temperature *= 1-RATE_OF_COOLING;
@@ -54,11 +59,14 @@ public class SimulatedAnnealing {
         for (Client client: route.getClients()) {
 
             if (possibleToTake(curTime, curLongitude, curLatitude, client)) {
-                curTime += Util.timeNeed(curLongitude, curLatitude, client.getLongitude(), client.getLatitude()) + Util.PICKUP_TIME;
+                curTime += Util.timeNeed(curLongitude, curLatitude, client.getLongitude(), client.getLatitude()) ;
+                client.setPickupTime(curTime);
+                curTime += + Util.PICKUP_TIME;
                 curLongitude = client.getLongitude();
                 curLatitude = client.getLatitude();
             } else {
                 penalty += Util.PENALTY;
+                client.setPickupTime(-1);
             }
         }
 
