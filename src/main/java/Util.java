@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Util {
     public static int SPEED = 50;
     public static int PICKUP_TIME = 2;
@@ -25,6 +27,62 @@ public class Util {
 
         return (int) Math.ceil(minimumTimeNeed);
     }
+
+    public static Route getPickUpTimes(Route route){
+
+        ArrayList<Client> clients = new ArrayList<>();
+
+        clients.add(new Client(HQ.longitude, HQ.latitude, HQ.stTime, HQ.endTime, HQ.stTime));
+
+
+        int curTime = HQ.stTime;
+        double curLongitude = HQ.longitude;
+        double curLatitude = HQ.latitude;
+
+        for (Client client: route.getClients()) {
+
+            if (possibleToTake(curTime, curLongitude, curLatitude, client)) {
+                curTime += Util.timeNeed(curLongitude, curLatitude, client.getLongitude(), client.getLatitude()) ;
+                client.setPickupTime(curTime);
+                curTime += + Util.PICKUP_TIME;
+                curLongitude = client.getLongitude();
+                curLatitude = client.getLatitude();
+            } else {
+                client.setPickupTime(-1);
+            }
+            clients.add(client);
+        }
+
+        return new Route(clients);
+    }
+
+    public static boolean possibleToTake(int timeNow, double curLongitude, double curLatitude, Client client) {
+
+//      check if it is possible to go back to HQ from current node by visiting this node withing time
+//      also check if the time slot match as well
+
+        int timeNeedToReach = Util.timeNeed(curLongitude, curLatitude,  client.getLongitude(), client.getLatitude());
+        timeNow += timeNeedToReach;
+
+//        System.out.print(client);
+//        System.out.println("\t time: Now : " + timeNow + "\t NeedToReach : " + timeNeedToReach);
+
+        if(timeNow > client.getEndTime()) {
+//            System.out.println("Unable To take!");
+            return false;
+        }
+
+        timeNow = Math.max(timeNow, client.getStTime());
+        timeNow += Util.PICKUP_TIME;
+
+        int timeNeedToBackToHQ = Util.timeNeed(client.getLongitude(),  client.getLatitude(), HQ.longitude, HQ.latitude);
+        timeNow += timeNeedToBackToHQ;
+
+//        System.out.println("\t NeedToBackToHQ : " + timeNeedToBackToHQ);
+
+        return  timeNow<=HQ.endTime;
+    }
+
 
 
 }

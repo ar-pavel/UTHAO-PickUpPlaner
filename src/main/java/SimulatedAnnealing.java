@@ -57,7 +57,7 @@ public class SimulatedAnnealing {
 
         for (Client client: route.getClients()) {
 
-            if (possibleToTake(curTime, curLongitude, curLatitude, client)) {
+            if (Util.possibleToTake(curTime, curLongitude, curLatitude, client)) {
                 curTime += Util.timeNeed(curLongitude, curLatitude, client.getLongitude(), client.getLatitude()) ;
                 client.setPickupTime(curTime);
                 curTime += + Util.PICKUP_TIME;
@@ -70,34 +70,6 @@ public class SimulatedAnnealing {
         }
 
         return  penalty;
-    }
-
-
-    private boolean possibleToTake(int timeNow, double curLongitude, double curLatitude, Client client) {
-
-//      check if it is possible to go back to HQ from current node by visiting this node withing time
-//      also check if the time slot match as well
-
-        int timeNeedToReach = Util.timeNeed(curLongitude, curLatitude,  client.getLongitude(), client.getLatitude());
-        timeNow += timeNeedToReach;
-
-//        System.out.print(client);
-//        System.out.println("\t time: Now : " + timeNow + "\t NeedToReach : " + timeNeedToReach);
-
-        if(timeNow > client.getEndTime()) {
-//            System.out.println("Unable To take!");
-            return false;
-        }
-
-        timeNow = Math.max(timeNow, client.getStTime());
-        timeNow += Util.PICKUP_TIME;
-
-        int timeNeedToBackToHQ = Util.timeNeed(client.getLongitude(),  client.getLatitude(), HQ.longitude, HQ.latitude);
-        timeNow += timeNeedToBackToHQ;
-
-//        System.out.println("\t NeedToBackToHQ : " + timeNeedToBackToHQ);
-
-        return  timeNow<=HQ.endTime;
     }
 
 

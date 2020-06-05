@@ -13,10 +13,22 @@ public class OutputWriterService {
             line = String.format("%f,%f,%d,%d,%d\n",HQ.longitude, HQ.latitude, HQ.stTime, HQ.endTime, HQ.stTime);
             outputFile.writeBytes(line);
 
+            Client lastVIsitedClient =route.getClients().get(0);
+
             for (Client client: route.getClients()) {
                 line = String.format("%f,%f,%d,%d,%d\n",client.getLongitude(), client.getLatitude(), client.getStTime(), client.getEndTime(), client.getPickupTime());
                 outputFile.writeBytes(line);
+                if(client.getPickupTime()!=-1)
+                    lastVIsitedClient = client;
             }
+            int timeNeeded = Util.timeNeed(lastVIsitedClient.getLongitude(), lastVIsitedClient.getLatitude(), HQ.longitude, HQ.latitude);
+            timeNeeded += Util.PICKUP_TIME;
+
+            int returnTime = timeNeeded + lastVIsitedClient.getPickupTime();
+
+            line = String.format("%f,%f,%d,%d,%d\n",HQ.longitude, HQ.latitude, HQ.stTime, HQ.endTime, returnTime);
+            outputFile.writeBytes(line);
+
             line = "Penalty count for this route : " + route.getPenaltyCount();
             outputFile.writeBytes(line);
 

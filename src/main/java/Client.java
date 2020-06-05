@@ -12,6 +12,14 @@ public class Client {
         this.endTime = endTime;
     }
 
+    public Client(double longitude, double latitude, int stTime, int endTime, int pickupTime) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.stTime = stTime;
+        this.endTime = endTime;
+        this.pickupTime = pickupTime;
+    }
+
     public double getLongitude() {
         return longitude;
     }
@@ -43,6 +51,7 @@ public class Client {
                 ", latitude=" + latitude +
                 ", stTime=" + stTime +
                 ", endTime=" + endTime +
+                ", pickUpTime=" + pickupTime +
                 '}';
     }
 
