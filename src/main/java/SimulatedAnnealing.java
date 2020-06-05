@@ -43,7 +43,6 @@ public class SimulatedAnnealing {
 //        System.err.println( acceptableRouteFlag? "Stay (Random <= Prob Function)":"Random > Prob Function");
 
         return acceptableRouteFlag;
-
     }
 
     public long calculatePenalty(Route route){
@@ -91,7 +90,6 @@ public class SimulatedAnnealing {
         }
 
         timeNow = Math.max(timeNow, client.getStTime());
-
         timeNow += Util.PICKUP_TIME;
 
         int timeNeedToBackToHQ = Util.timeNeed(client.getLongitude(),  client.getLatitude(), HQ.longitude, HQ.latitude);
