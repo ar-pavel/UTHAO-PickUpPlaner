@@ -4,13 +4,14 @@ Pickup Route Planer is to find a comparatively better route probably best one by
 
 This program takes clients' location (longitude and latitude) and preferable time slot (available to pickup) and generates a route with an as low possible penalty and set a pickup time for each of the selected clients. If the client is not selected in this route plan is set to pick up time ' -1'.  
 
+For more details check the file named 'Problem Descriptions'.
 
  
 #### Class Details: 
 - **ClientAddressGeneratorService:** *Generates Random Clients* according to a pre-defined base or headquarter address and write it in the userdefined file.
 -  	**AddressReaderService:** Read Clients info and base/HQ info form the user provided csv data file.
 -  	**Util:** Contains most of the algorithms like distance calculator and time need to visit a node and so on. 
--  	**SimulatedAnnealing:** Modified implementation of Simulated Annealing Algorithm.
+-  	**SimulatedAnnealing:** Modified implementation of Simulated Annealing Algorithm with *INITIAL_TEMPERATURE = 999*, *MIN_TEMPERATURE = 0.99*, and *RATE_OF_COOLING = 0.005* and the penalty checker check penalty with ***O(N)*** *(N = Number of Clients)* complexity. 
 -  	**PickupBoyDriver:** Driver class to calculate pickup time ann penalty for the user input and find a relatively better route.
 
 
