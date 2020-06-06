@@ -2,7 +2,7 @@
 
 Pickup Route Planer to find a comparatively better route probably best one by considering counting minimum penalty using Simulated Annealing Algorithm.
  
-##### Class Details: 
+#### Class Details: 
 - **ClientAddressGeneratorService:** *Generates Random Clients* according to a pre-defined base or headquarter address and write it in the userdefined file.
 -  	**AddressReaderService:** Read Clients info and base/HQ info form the user provided csv data file.
 -  	**Util:** Contains most of the algorithms like distance calculator and time need to visit a node and so on. 
@@ -12,17 +12,37 @@ Pickup Route Planer to find a comparatively better route probably best one by co
 ##### Sample Input
 
 ``` csv
+Longitude,Latitude,StartTime,EndTime
 30.000000,70.000000,600,1800
-30.003169,70.058094,1132,1229
-30.023149,70.068259,1295,1341
-30.026783,70.092527,1080,1116
-30.068749,70.070430,1251,1325
-30.090877,70.034775,879,933
-30.086472,70.029648,1283,1283
-30.046641,70.075879,1194,1285
-30.013700,70.079745,953,1026
-30.077351,70.048395,633,679
-30.075622,70.083754,1236,1294
+30.069334,70.096248,1719,1800
+30.091369,70.083614,1418,1496
+30.092924,70.041599,1411,1491
+30.086941,70.093421,1212,1286
+30.048382,70.078103,796,804
+30.029958,70.085493,1550,1566
+30.038990,70.012508,1041,1077
+30.097868,70.007142,878,898
+30.003641,70.088746,830,889
+30.048452,70.033175,1076,1086
 ```
 
+##### Sample Output
+
+``` csv
+Longitude,Latitude,StartTime,EndTime,PickupTime
+30.000000,70.000000,600,1800,600
+30.091369,70.083614,1418,1496,626
+30.097868,70.007142,878,898,646
+30.048382,70.078103,796,804,669
+30.069334,70.096248,1719,1800,688
+30.086941,70.093421,1212,1286,705
+30.038990,70.012508,1041,1077,722
+30.048452,70.033175,1076,1086,733
+30.003641,70.088746,830,889,755
+30.092924,70.041599,1411,1491,775
+30.029958,70.085493,1550,1566,796
+30.000000,70.000000,600,1800,810
+
+Penalty count for this route : 0
+```
 
