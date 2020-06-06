@@ -1,6 +1,6 @@
 ## Pickup planner for Uthao
 
-Pickup Route Planer to find a comparatively better route probably best one by considering counting minimum penalty using Simulated Annealing Algorithm.
+Pickup Route Planer is to find a comparatively better route probably best one by considering minimum penalty (according to client's satisfaction) using Simulated Annealing Algorithm.
  
 #### Class Details: 
 - **ClientAddressGeneratorService:** *Generates Random Clients* according to a pre-defined base or headquarter address and write it in the userdefined file.
