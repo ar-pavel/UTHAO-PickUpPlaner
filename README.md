@@ -2,7 +2,7 @@
 
 Pickup Route Planer is to find a comparatively better route probably best one by considering minimum penalty (according to client's satisfaction) using Simulated Annealing Algorithm.
 
-This program generates a route with an as low possible penalty and set a pickup time for each of the selected clients. If the client is not selected in this route plan is set to pick up time ' -1'.  
+This program takes clients' location (longitude and latitude) and preferable time slot (available to pickup) and generates a route with an as low possible penalty and set a pickup time for each of the selected clients. If the client is not selected in this route plan is set to pick up time ' -1'.  
 
 
  
