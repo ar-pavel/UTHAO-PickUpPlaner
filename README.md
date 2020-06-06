@@ -1,4 +1,4 @@
-## Pickup planner for Uthao
+## UTHAO : Pickup planner 
 
 Pickup Route Planer is to find a comparatively better route probably best one by considering minimum penalty (according to client's satisfaction) using Simulated Annealing Algorithm.
 
