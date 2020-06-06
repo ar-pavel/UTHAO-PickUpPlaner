@@ -7,10 +7,10 @@ public class PickupBoyDriver {
     public static void main(String[] args) {
 
         // Provide a File name, number of clients and base/HQ longitude and latitude to generate random clients
-        new ClientAddressGeneratorService().generateLocations("input.in", 10, 30.00, 70.00);
+        new ClientAddressGeneratorService().generateLocations("input.csv", 100, 30.00, 70.00);
 
         // Read clients and HQ info form the input file
-        Route initialRoute = new AddressReaderService().readAddress("input.in");
+        Route initialRoute = new AddressReaderService().readAddress("input.csv");
 
 
         // If Debug

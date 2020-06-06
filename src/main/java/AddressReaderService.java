@@ -12,7 +12,7 @@ public class AddressReaderService {
         try {
             List<String> lineList = Files.readAllLines(Paths.get(fileName));
 
-            String[] tokens = lineList.get(0).split(",");
+            String[] tokens = lineList.get(1).split(",");
 
             //Setting HQ Information
             HQ.longitude = Double.parseDouble(tokens[0]);
@@ -20,7 +20,7 @@ public class AddressReaderService {
             HQ.stTime = Integer.parseInt(tokens[2]);
             HQ.endTime = Integer.parseInt(tokens[3]);
 
-            for (int i = 1; i < lineList.size(); i++) {
+            for (int i = 2; i < lineList.size(); i++) {
                 tokens = lineList.get(i).split(",");
 
                 double longitude = Double.parseDouble(tokens[0]);

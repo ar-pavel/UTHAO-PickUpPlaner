@@ -15,7 +15,9 @@ public class ClientAddressGeneratorService {
 //            ArrayList<Client> clients = new ArrayList<>();
 
 
-            String line = String.format("%f,%f,%d,%d\n",hqLongitude, hqLatitude, 600, 1800);
+            String line = "Longitude,Latitude,StartTime,EndTime,PickupTime\n";
+            outputFile.writeBytes(line);
+            line = String.format("%f,%f,%d,%d\n",hqLongitude, hqLatitude, 600, 1800);
             outputFile.writeBytes(line);
 
             for (int i = 0; i < n; i++) {
